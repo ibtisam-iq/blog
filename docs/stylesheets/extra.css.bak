@@ -1,0 +1,711 @@
+/* =============================================================================
+   BLOG — extra.css
+   Commercial feel: clean typography, readable posts, strong visual hierarchy
+   Inspired by: Cloudflare Blog, HashiCorp, AWS Blog, Datadog
+   ============================================================================= */
+
+/* =============================================================================
+   CUSTOM BRAND TOKENS — Vercel/Linear/Supabase tier dark palette
+   ============================================================================= */
+
+/* Light mode */
+[data-md-color-scheme="default"] {
+  --md-primary-fg-color:          #3d5afe;   /* electric indigo — accent only */
+  --md-primary-fg-color--light:   #6f7ff7;
+  --md-primary-fg-color--dark:    #2140e0;
+  --md-primary-bg-color:          #ffffff;
+  --md-primary-bg-color--light:   #ffffff;
+  --md-accent-fg-color:           #3d5afe;
+  --md-typeset-a-color:           #3d5afe;
+}
+
+/* Dark mode */
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color:          #7c8cf8;   /* softer indigo on dark bg */
+  --md-primary-fg-color--light:   #a5b0fb;
+  --md-primary-fg-color--dark:    #5c6bc0;
+  --md-primary-bg-color:          #0d1117;
+  --md-primary-bg-color--light:   #161b22;
+  --md-accent-fg-color:           #82b1ff;
+  --md-typeset-a-color:           #7c8cf8;
+  --md-default-bg-color:          #0d1117;   /* GitHub dark */
+  --md-default-bg-color--light:   #161b22;   /* slightly elevated surfaces */
+  --md-default-bg-color--lighter: #1c2128;
+  --md-default-fg-color:          #e6edf3;   /* GitHub text white */
+  --md-default-fg-color--light:   #8b949e;   /* muted text */
+  --md-default-fg-color--lighter: #484f58;
+  --md-default-fg-color--lightest:#30363d;
+}
+
+/* =============================================================================
+   HEADER — Near-black, premium. Accent shows only through text + underline
+   ============================================================================= */
+
+.md-header {
+  background-color: #0d1117 !important;
+  border-bottom: 1px solid #21262d;
+  box-shadow: 0 1px 0 #21262d, 0 4px 24px rgba(0, 0, 0, 0.4) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Site title */
+.md-header__title {
+  font-weight: 800 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: -0.01em;
+  color: #e6edf3 !important;
+}
+
+/* Logo hover */
+.md-header__button.md-logo {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.md-header__button.md-logo:hover {
+  transform: scale(1.08);
+  opacity: 0.85;
+}
+
+/* Icon buttons */
+.md-header__button:not(.md-logo) {
+  border-radius: 6px;
+  color: #8b949e !important;
+  transition: color 0.2s ease, background 0.2s ease, transform 0.15s ease;
+}
+.md-header__button:not(.md-logo):hover {
+  color: #e6edf3 !important;
+  background: #21262d !important;
+  transform: scale(1.08);
+}
+
+/* Search */
+.md-search__form {
+  background: #161b22 !important;
+  border: 1px solid #30363d !important;
+  border-radius: 8px !important;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.md-search__form:focus-within {
+  border-color: #7c8cf8 !important;
+  box-shadow: 0 0 0 3px rgba(124, 140, 248, 0.15) !important;
+}
+.md-search__input {
+  color: #e6edf3 !important;
+  font-size: 0.875rem !important;
+  font-weight: 500;
+}
+.md-search__input::placeholder {
+  color: #484f58 !important;
+}
+
+/* =============================================================================
+   NAV TABS — Near-black bar, indigo accent only on active/hover
+   ============================================================================= */
+
+.md-tabs {
+  background-color: #0d1117 !important;
+  border-bottom: 1px solid #21262d !important;
+}
+
+.md-tabs__link {
+  font-weight: 700 !important;
+  font-size: 0.78rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: #8b949e !important;
+  opacity: 1 !important;
+  position: relative;
+  transition: color 0.2s ease !important;
+}
+
+/* Animated indigo underline */
+.md-tabs__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #7c8cf8;
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+.md-tabs__link:hover::after,
+.md-tabs__item--active .md-tabs__link::after {
+  width: 100%;
+}
+
+.md-tabs__link:hover {
+  color: #e6edf3 !important;
+}
+.md-tabs__item--active .md-tabs__link {
+  color: #e6edf3 !important;
+  font-weight: 800 !important;
+}
+
+/* -----------------------------------------------------------------------------
+   GRID & LAYOUT
+   ----------------------------------------------------------------------------- */
+.md-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+@media screen and (max-width: 479px) {
+  .md-grid {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .md-grid {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* =============================================================================
+   HEADER — Production-grade, commercial feel
+   ============================================================================= */
+
+/* Main header bar — deeper shadow, tighter height */
+.md-header {
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: box-shadow 0.3s ease;
+}
+
+.md-header:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+/* Site title — bolder, larger */
+.md-header__title {
+  font-weight: 800 !important;
+  font-size: 1.1rem !important;
+  letter-spacing: -0.01em;
+  transition: opacity 0.2s ease;
+}
+
+.md-header__title:hover {
+  opacity: 0.85;
+}
+
+/* Logo — subtle scale on hover */
+.md-header__button.md-logo {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.md-header__button.md-logo:hover {
+  transform: scale(1.08);
+  opacity: 0.9;
+}
+
+/* Search bar — cleaner, more prominent */
+.md-search__form {
+  border-radius: 8px !important;
+  transition: box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.md-search__form:focus-within {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4) !important;
+}
+
+.md-search__input {
+  font-size: 0.9rem !important;
+  font-weight: 500;
+}
+
+/* Icon buttons (theme toggle, etc.) */
+.md-header__button:not(.md-logo) {
+  border-radius: 6px;
+  transition: background 0.2s ease, transform 0.15s ease;
+  padding: 0.3rem;
+}
+
+.md-header__button:not(.md-logo):hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.1);
+}
+
+/* =============================================================================
+   NAVIGATION TABS — The main header tabs (Blog, Archive, Categories)
+   ============================================================================= */
+
+/* Tab bar container */
+.md-tabs {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.12);
+  transition: border-color 0.3s ease;
+}
+
+/* Individual tab item */
+.md-tabs__item {
+  position: relative;
+}
+
+/* Tab link — bold, spaced, uppercase like Cloudflare/AWS */
+.md-tabs__link {
+  font-weight: 700 !important;
+  font-size: 0.8rem !important;
+  letter-spacing: 0.07em !important;
+  text-transform: uppercase !important;
+  opacity: 0.78 !important;
+  padding: 0 0.1rem !important;
+  transition: opacity 0.2s ease, color 0.2s ease !important;
+  position: relative;
+}
+
+/* Animated underline on hover — slides in from left */
+.md-tabs__link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: width 0.25s ease;
+}
+
+.md-tabs__link:hover::after,
+.md-tabs__item--active .md-tabs__link::after {
+  width: 100%;
+}
+
+/* Hover state — full opacity */
+.md-tabs__link:hover {
+  opacity: 1 !important;
+}
+
+/* Active tab — fully visible, white underline already applied above */
+.md-tabs__item--active .md-tabs__link {
+  opacity: 1 !important;
+  font-weight: 800 !important;
+}
+
+/* =============================================================================
+   SIDEBAR NAVIGATION — Left nav items
+   ============================================================================= */
+
+/* Nav section titles */
+.md-nav__title {
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  padding-bottom: 0.4rem;
+}
+
+/* Nav links */
+.md-nav__link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  border-radius: 6px;
+  padding: 0.3rem 0.6rem !important;
+  transition: background 0.15s ease, color 0.15s ease, padding-left 0.2s ease;
+  position: relative;
+}
+
+/* Hover — subtle background + indent */
+.md-nav__link:hover {
+  background: rgba(var(--md-primary-fg-color--rgb), 0.08);
+  padding-left: 1rem !important;
+  color: var(--md-primary-fg-color) !important;
+}
+
+/* Active nav link — left accent bar */
+.md-nav__link--active {
+  font-weight: 700 !important;
+  color: var(--md-primary-fg-color) !important;
+  background: rgba(var(--md-primary-fg-color--rgb), 0.1);
+  border-left: 3px solid var(--md-primary-fg-color);
+  padding-left: 0.8rem !important;
+}
+
+/* =============================================================================
+   TYPOGRAPHY — Medium-inspired, calibrated for sidebar layout
+   Medium: 20px body, serif — we adapt for technical/DevOps blog
+   ============================================================================= */
+
+.md-typeset {
+  font-size: 1.0625rem;      /* 17px — between Medium (20px) and default (16px) */
+  line-height: 1.75;         /* Medium uses 1.58 but technical posts need more air */
+  color: var(--md-default-fg-color);
+}
+
+/* Post title — scaled for sidebar context, not full-width like Medium */
+.md-typeset h1 {
+  font-size: 2rem;            /* 32px — Medium uses 46px but has no sidebars */
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+/* Section headers */
+.md-typeset h2 {
+  font-size: 1.375rem;        /* 22px — Medium uses ~30px full width */
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
+  margin-top: 2.5rem;
+  border-bottom: 1.5px solid var(--md-primary-fg-color);
+  padding-bottom: 0.3rem;
+}
+
+/* Sub-section */
+.md-typeset h3 {
+  font-size: 1.125rem;        /* 18px */
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  line-height: 1.4;
+  margin-top: 1.75rem;
+}
+
+/* h4 — label style */
+.md-typeset h4 {
+  font-size: 0.875rem;        /* 14px */
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  opacity: 0.65;
+  margin-top: 1.5rem;
+}
+
+/* Paragraphs — Medium keeps ~65ch, we match */
+.md-typeset p {
+  max-width: 68ch;
+  margin-bottom: 1.4rem;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+}
+
+/* Bold — slightly warmer, not just heavier */
+.md-typeset strong {
+  font-weight: 700;
+  color: var(--md-default-fg-color);
+}
+
+/* Lead paragraph — first p after h1, slightly larger like Medium subtitles */
+.md-typeset h1 + p {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  opacity: 0.85;
+  font-weight: 400;
+  max-width: 60ch;
+}
+
+/* Mobile */
+@media screen and (max-width: 767px) {
+  .md-typeset h1    { font-size: 1.6rem; }
+  .md-typeset h2    { font-size: 1.2rem; }
+  .md-typeset h3    { font-size: 1.05rem; }
+  .md-typeset p     { max-width: 100%; font-size: 1rem; }
+}
+
+/* =============================================================================
+   POST META — Date, author, reading time
+   ============================================================================= */
+
+.md-post__meta {
+  font-size: 0.85rem;
+  opacity: 0.75;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+/* =============================================================================
+   POST EXCERPT CARDS — Blog listing
+   ============================================================================= */
+
+.md-post {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 10px;
+  padding: 1.75rem;
+  margin-bottom: 1.5rem;
+  transition: box-shadow 0.25s ease, border-color 0.25s ease, transform 0.2s ease;
+}
+
+.md-post:hover {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  border-color: var(--md-primary-fg-color);
+  transform: translateY(-2px);
+}
+
+/* Post title link on hover */
+.md-post h2 a:hover,
+.md-post h2 a:focus {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* "Continue reading" link */
+.md-post .md-post__action a {
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.03em;
+  transition: letter-spacing 0.2s ease, opacity 0.2s ease;
+}
+
+.md-post .md-post__action a:hover {
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+}
+
+/* =============================================================================
+   TAGS — Pill style
+   ============================================================================= */
+
+.md-tag {
+  border-radius: 20px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.md-tag:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* =============================================================================
+   CODE BLOCKS
+   ============================================================================= */
+
+.md-typeset pre {
+  border-radius: 10px;
+  border-left: 4px solid var(--md-primary-fg-color);
+}
+
+.md-typeset code {
+  font-size: 0.875em;
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+}
+
+/* =============================================================================
+   ADMONITIONS
+   ============================================================================= */
+
+.md-typeset .admonition {
+  border-radius: 8px;
+  border-left-width: 4px;
+  font-size: 0.95rem;
+}
+
+/* =============================================================================
+   LAST UPDATED
+   ============================================================================= */
+
+.md-source-file__fact::before {
+  content: "Last Updated: ";
+  font-weight: 600;
+}
+
+.md-source-file__fact svg {
+  display: none !important;
+}
+
+.md-source-file__fact::after {
+  content: " PKT";
+  font-weight: 600;
+  color: var(--md-default-fg-color);
+}
+
+/* =============================================================================
+   FOOTER
+   ============================================================================= */
+
+.md-footer {
+  margin-top: 3rem;
+  border-top: 1px solid var(--md-default-fg-color--lightest);
+}
+
+/* Footer social icons — hover lift */
+.md-social__link {
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  border-radius: 6px;
+}
+
+.md-social__link:hover {
+  transform: translateY(-3px) scale(1.1);
+  opacity: 1 !important;
+}
+
+/* =============================================================================
+   RESPONSIVE
+   ============================================================================= */
+
+@media screen and (max-width: 767px) {
+  .md-post {
+    padding: 1rem;
+  }
+
+  .md-typeset h1 {
+    font-size: 1.6rem;
+  }
+
+  .md-typeset h2 {
+    font-size: 1.2rem;
+  }
+
+  .md-tabs__link {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.04em !important;
+  }
+}
+
+/* Prevent metadata from wrapping awkwardly */
+.md-post__meta,
+.md-post__authors,
+.md-sidebar .md-nav__item {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Give the post sidebar slightly more breathing room */
+.md-sidebar--primary {
+  width: 14rem !important;   /* default is 12.1rem — gives metadata room */
+}
+
+/* Author card — tighter, cleaner */
+.md-post__authors .md-author {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: nowrap;
+}
+
+/* Full-width reading mode — post pages only */
+.md-content[data-md-component="content"] {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* Fix "FEBRUA..." "IN CLO..." truncation in post sidebar */
+.md-post__meta .md-post__meta-inner,
+[class*="md-post__"] time,
+[class*="md-post__"] .md-post__categories {
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  word-break: normal;
+}
+
+/* Widen post sidebar slightly so metadata doesn't wrap */
+@media screen and (min-width: 960px) {
+  .md-sidebar--primary {
+    width: 13.5rem !important;
+  }
+}
+
+/* =============================================================================
+   POST SIDEBAR — Left author/metadata panel, scaled down to fit cleanly
+   ============================================================================= */
+
+/* "Back to Index" link — smaller, single line */
+.md-post__nav-link,
+.md-post__nav-link span,
+[class*="md-post"] a[href*="index"] {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  white-space: nowrap !important;
+  font-weight: 600;
+}
+
+/* The entire left sidebar panel */
+.md-sidebar--primary .md-sidebar__scrollwrap {
+  font-size: 0.78rem !important;
+}
+
+/* Author name */
+.md-post__authors .md-author__name,
+.md-post__authors strong,
+[class*="md-author"] [class*="name"] {
+  font-size: 0.8rem !important;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 10rem;
+  display: block;
+}
+
+/* Author description line */
+.md-post__authors .md-author__description,
+[class*="md-author"] [class*="description"] {
+  font-size: 0.72rem !important;
+  opacity: 0.65;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 10rem;
+  display: block;
+}
+
+/* Author avatar — slightly smaller */
+.md-post__authors .md-author img,
+[class*="md-author"] img {
+  width: 2rem !important;
+  height: 2rem !important;
+  border-radius: 50%;
+}
+
+/* METADATA label */
+.md-post__meta-title,
+[class*="md-post"] [class*="meta"] > strong,
+[class*="md-post"] [class*="meta-label"] {
+  font-size: 0.68rem !important;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+/* Metadata items — date, category, read time */
+.md-post__meta li,
+.md-post__meta-item,
+[class*="md-post__meta"] li,
+[class*="md-post__meta"] span {
+  font-size: 0.75rem !important;
+  line-height: 1.5 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 11rem;
+  display: flex !important;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+/* Icons inside metadata — keep them proportional */
+.md-post__meta svg,
+[class*="md-post__meta"] svg {
+  width: 0.85rem !important;
+  height: 0.85rem !important;
+  flex-shrink: 0;
+}
+
+/* Widen sidebar just enough to show full date */
+@media screen and (min-width: 960px) {
+  .md-sidebar--primary {
+    width: 14rem !important;
+    min-width: 14rem !important;
+  }
+}
+

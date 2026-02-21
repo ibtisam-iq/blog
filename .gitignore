@@ -1,0 +1,15 @@
+# macOS
+.DS_Store
+
+# Python
+.venv/
+
+# MkDocs
+/site/
+
+# Local development
+.idea/
+.vscode/
+
+# Engineering Scratchpad
+.scratchpad/
