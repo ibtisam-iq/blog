@@ -17,3 +17,5 @@
 # Backups
 *.bak
 *.backup
+
+.cache/
