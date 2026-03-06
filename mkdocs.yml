@@ -1,3 +1,5 @@
+# SITE METADATA
+# These fields are used by search engines (SEO), social sharing previews, and the browser tab title.
 site_name: Engineering Blog
 site_url: https://blog.ibtisam-iq.com
 site_description: >-
@@ -5,52 +7,59 @@ site_description: >-
   systems. Every post comes from a real setup — no theory without execution.
 site_author: Muhammad Ibtisam
 
+# DIRECTORY STRUCTURE
 docs_dir: docs
 site_dir: site
 
+# COPYRIGHT FOOTER
 copyright: >-
   Copyright &copy; 2026
   <a href="https://www.linkedin.com/in/ibtisam-iq/" target="_blank" rel="noopener">Muhammad Ibtisam</a>.
   All rights reserved.
 
+# THEME CONFIGURATION
+# Everything under "theme:" controls how your site looks and behaves.
 theme:
   name: material
   language: en
-  custom_dir: docs/overrides
-  logo: images/favicon.svg
-  favicon: images/favicon.ico
+  custom_dir: docs/overrides      # If you want to override any theme HTML templates
+  logo: images/favicon.svg        # Logo shown in the top-left header
+  favicon: images/favicon.ico     # Browser tab icon
 
   font:
-    text: Inter
-    code: Roboto Mono
+    text: Inter                   # text  → font for all normal readable content
+    code: Roboto Mono             # code  → font for code blocks (monospace)
 
   features:
-    # Navigation
-    - navigation.instant
-    - navigation.instant.progress
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.path
-    - navigation.prune
-    - navigation.top
-    - navigation.footer
+    # NAVIGATION
+    - navigation.instant          # Pages load without full browser refresh (like a SPA)
+    - navigation.instant.progress # Shows a loading bar at the top during page loads
+    - navigation.tabs             # Shows top-level sections as tabs in the header
+    - navigation.tabs.sticky      # Tabs stay visible even when you scroll down
+    - navigation.path             # Shows breadcrumbs (Home > Category > Post)
+    - navigation.prune            # Hides nav items not relevant to current page (performance)
+    - navigation.top              # "Back to top" button appears when scrolling up
+    - navigation.footer           # Previous/Next post navigation at bottom of each post
 
-    # TOC
-    - toc.follow
+    # TABLE OF CONTENTS
+    - toc.follow                  # TOC sidebar highlights the section you're currently reading
 
-    # Search
-    - search.suggest
-    - search.highlight
-    - search.share
+    # SEARCH
+    - search.suggest              # Shows autocomplete suggestions as you type
+    - search.highlight            # Highlights search terms on the result page
+    - search.share                # Adds a "share search" button to copy search URL
 
-    # Content
-    - content.code.copy
-    - content.code.annotate
-    - content.tabs.link
-    - content.tooltips
-    - content.action.edit
-    - content.action.view
+    # CONTENT
+    - content.code.copy           # Adds a copy button to every code block
+    - content.code.annotate       # Allows (1) style inline annotations inside code blocks
+    - content.tabs.link           # Syncs tab selection across the whole page
+    - content.tooltips            # Enables hover tooltips on abbreviated terms
+    - content.action.edit         # Adds "Edit this page" button (links to GitHub)
+    - content.action.view         # Adds "View source" button (links to GitHub raw file)
 
+  # COLOR PALETTE
+  # Two palettes = automatic light/dark mode switching.
+  # "primary: custom" means you control the color via extra.css
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -68,6 +77,11 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 
+  # ICONS
+  # repo   → icon shown in header linking to your GitHub repo
+  # edit   → icon for the "Edit this page" button
+  # view   → icon for the "View source" button
+  # tag.*  → each tag name gets its own icon in post cards
   icon:
     repo: fontawesome/brands/github
     edit: material/pencil
@@ -80,90 +94,135 @@ theme:
       networking: fontawesome/solid/network-wired
       security: fontawesome/solid/shield-halved
 
+# PLUGINS
 plugins:
   - search:
       lang: en
       separator: '[\s\-\.]+'
 
-  #- awesome-pages:
-  #    strict: false
-
-  # - section-index
-
+  # AUTOREFS
+  # Lets you link to any heading in any file by its anchor name.
+  # Example: [see this](#my-heading) works across files automatically.
   - autorefs
 
+  # TAGS
+  # Creates a /tags/ index page listing all tags used across posts.
+  # Tag icons are defined under theme.icon.tag above.
+  # Tags themselves are listed in extra.tags below.
   - tags:
 
+  # BLOG (CORE PLUGIN)
   - blog:
-      blog_dir: .
-      post_dir: posts
-      post_date_format: long
-      post_url_format: "{slug}"
-      post_excerpt: required
-      post_excerpt_separator: <!-- more -->
-      pagination: true
-      pagination_per_page: 10
-      pagination_url_format: "page/{page}"
-      authors: true
-      authors_file: .authors.yml
-      categories: true
-      categories_allowed:
-        - Containers & Orchestration
+      blog_dir: .                           # Blog lives at root — homepage IS the post feed
+      post_dir: posts                       # Your .md post files go in docs/posts/
+      post_date_format: long                # Shows "March 06, 2026" (not "2026-03-06")
+      post_url_format: "{slug}"             # Clean URL: /my-post-title/ (good for SEO)
+      post_excerpt: required                # Every post MUST have <!-- more --> or build fails
+      post_excerpt_separator: <!-- more --> # Everything above this = preview card on homepage
+      pagination: true                      # Split posts across multiple pages
+      pagination_per_page: 10               # Show 10 posts per page on the feed
+      pagination_url_format: "page/{page}"  # Page 2 URL = /page/2/
+      authors: true                         # Show author name + avatar on each post
+      authors_file: .authors.yml            # Author data lives in docs/.authors.yml
+      categories: true                      # Enable grouping posts by category
+      categories_allowed:                   # ONLY these exact strings are valid categories
+        - Containers & Orchestration        # If a post uses something else, build errors out
         - CI/CD & Software Delivery
         - Cloud & Infrastructure
         - Servers & Runtime Systems
         - Observability & Security
         - Operations & Self-Managed Systems
         - Databases & Storage
+
+  # SOCIAL CARDS
+  # AUTO-GENERATES a branded preview image for every post.
+  # The image is built at deploy time from your post title + brand colors.
+  - social:
+      cards_layout_options:
+        background_color: "#0d1117"   # Dark background (matches the dark theme)
+        color: "#ffffff"              # White text on cards
+        font_family: Inter            # Same font as the site for brand consistency
+
+  # RSS FEED
+  # Generates /feed_rss_created.xml automatically at build time.
+  - rss:
+      match_path: posts/.*            # Only include posts (not other pages like About)
+      date_from_meta:
+        as_creation: date             # Use the "date:" field in your post front matter
+      categories:
+        - categories
+        - tags
+
+  # GIT REVISION DATE
   - git-revision-date-localized:
       type: custom
-      custom_format: "%B %d, %Y %I:%M:%S %p"
-      enable_creation_date: false
-      fallback_to_build_date: false
-      timezone: Asia/Karachi
+      custom_format: "%B %d, %Y %I:%M:%S %p"    # "March 06, 2026 05:00:00 PM"
+      enable_creation_date: false               # Don't show original creation date
+      fallback_to_build_date: false             # Don't fake a date if git history missing
+      timezone: Asia/Karachi                    # PKT = UTC+5
       locale: en
+
+  # MINIFY
+  # Compresses the output HTML/CSS/JS before deployment to reduce file sizes and speed up load times.
   - minify:
       minify_html: true
       minify_js: true
       minify_css: true
       htmlmin_opts:
         remove_comments: true
-      cache_safe: true
+      cache_safe: true         # cache_safe: true → safe to use with CDN/caching systems like Cloudflare.
 
+# MARKDOWN EXTENSIONS
+# These extend what you can write in your .md files.
+# Standard Markdown is basic — these add admonitions, code annotations,
+# diagrams, keyboard keys, emoji, collapsible blocks, and much more.
 markdown_extensions:
-  - abbr
-  - admonition
-  - attr_list
-  - def_list
-  - footnotes
-  - md_in_html
-  - tables
+
+  # STANDARD PYTHON MARKDOWN EXTENSIONS
+  - abbr          # Hover tooltips for abbreviations: *[CI]: Continuous Integration
+  - admonition    # !!! note / !!! warning / !!! tip callout blocks
+  - attr_list     # Add HTML attributes to elements { .class #id }
+  - def_list      # Definition lists (term followed by definition)
+  - footnotes     # Footnotes [^1] rendered at the bottom of posts
+  - md_in_html    # Write Markdown inside raw HTML tags
+  - tables        # Standard Markdown tables | col | col |
   - toc:
-      permalink: true
-      permalink_title: "Link to this section"
-      toc_depth: 3
+      permalink: true                          # Each heading gets a # anchor link
+      permalink_title: "Link to this section"  # Tooltip shown on the anchor icon
+      toc_depth: 3                             # Show h1, h2, h3 in the TOC sidebar
       slugify: !!python/object/apply:pymdownx.slugs.slugify
         kwds:
-          case: lower
+          case: lower                          # Anchors are lowercase (cleaner URLs)
 
+  # CODE HIGHLIGHTING
   - pymdownx.highlight:
-      use_pygments: true
-      line_spans: __span
-      pygments_lang_class: true
-      anchor_linenums: true
-      linenums_style: pymdownx-inline
+      use_pygments: true               # Server-side highlighting (no JS needed)
+      line_spans: __span               # Required for inline line annotations to work
+      pygments_lang_class: true        # Adds language class to code blocks
+      anchor_linenums: true            # Each line number gets an anchor (link to line)
+      linenums_style: pymdownx-inline  # Line numbers in
 
+  # INLINE HIGHLIGHTING
   - pymdownx.inlinehilite
+
+  # SNIPPETS
+  # Lets you include the contents of any file as a code block in your post.
+  # Example: ```snippet path/to/file.py``` will include that file with syntax highlighting.
   - pymdownx.snippets:
       base_path: ['.']
       check_paths: true
 
+  # MERMAID DIAGRAMS
+  # Lets you create diagrams and flowcharts using Mermaid syntax.
+  # Example: ```mermaid graph TD; A-->B;``` will render a simple flowchart.
   - pymdownx.superfences:
       custom_fences:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
 
+  # BETTER EMPHASIS
+  # Lets you use smart typography for emphasis, like proper curly quotes and dashes.
   - pymdownx.betterem:
       smart_enable: all
   - pymdownx.caret
@@ -176,6 +235,15 @@ markdown_extensions:
       emoji_index: !!python/name:material.extensions.emoji.twemoji
       emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
+  # TABBED CONTENT
+  # Lets you create tabbed interfaces to show different content in the same area.
+  # Example:
+  # ```tabbed
+  # === "Option 1"
+  #     Content for option 1
+  # === "Option 2"
+  #     Content for option 2
+  # ```
   - pymdownx.tabbed:
       alternate_style: true
       combine_header_slug: true

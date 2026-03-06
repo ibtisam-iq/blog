@@ -13,3 +13,7 @@
 
 # Engineering Scratchpad
 .scratchpad/
+
+# Backups
+*.bak
+*.backup

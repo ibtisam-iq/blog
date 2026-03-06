@@ -1,12 +1,13 @@
 /* =============================================================================
    ENGINEERING BLOG — extra.css
-   Version: clean-final
    Inspired by: Vercel, GitHub, Linear, Cloudflare
    ============================================================================= */
 
 
 /* =============================================================================
    1. BRAND TOKENS
+   Color variables for light (default) and dark (slate) themes.
+   "primary: custom" in mkdocs.yml means these variables control all colors.
    ============================================================================= */
 
 [data-md-color-scheme="default"] {
@@ -39,14 +40,32 @@
 
 /* =============================================================================
    2. GRID & LAYOUT
+   Removes Material theme's default max-width cap so content fills
+   the full page width — same approach as nectar.ibtisam-iq.com.
+   All responsive .md-grid rules live here only (no duplicates below).
    ============================================================================= */
 
 .md-grid {
-  max-width: 1200px;
+  max-width: none !important;
   margin: 0 auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding-left: 1rem !important;
+  padding-right: 1rem !important;
 }
+
+@media screen and (max-width: 767px) {
+  .md-grid {
+    padding-left: 0.5rem !important;
+    padding-right: 0.5rem !important;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .md-grid {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+}
+
 
 
 /* =============================================================================
@@ -209,8 +228,12 @@
   padding-left: 0.8rem !important;
 }
 
+
 /* =============================================================================
    7. POST SIDEBAR (left panel on individual post pages)
+   Width is fixed at 16.5rem on desktop. All text is shrunk to 0.72rem
+   so the author card, metadata, and back-link fit without wrapping.
+   This section MUST come after section 6 to win specificity.
    ============================================================================= */
 
 @media screen and (min-width: 960px) {
@@ -219,8 +242,85 @@
   }
 }
 
-/* Force small font on everything inside sidebar — must come AFTER section 8 */
-/* Move this block to the very bottom of your file */
+/* Shrink ALL text inside the post sidebar — must be last to win */
+.md-sidebar--primary .md-sidebar__scrollwrap * {
+  font-size: 0.72rem !important;
+  line-height: 1.5 !important;
+}
+
+/* Back to index — single row, no wrapping */
+.md-post__nav-link {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 0.3rem !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  font-size: 0.65rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  text-transform: uppercase !important;
+}
+
+.md-post__nav-link span,
+.md-post__nav-link svg {
+  white-space: nowrap !important;
+  flex-shrink: 0;
+}
+
+/* Author name — single line with ellipsis */
+.md-post__authors .md-author a {
+  font-size: 0.75rem !important;
+  font-weight: 700 !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  max-width: 12rem !important;
+}
+
+/* Author description — single line with ellipsis */
+.md-post__authors .md-author small {
+  font-size: 0.68rem !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  max-width: 12rem !important;
+  opacity: 0.6;
+}
+
+/* Metadata rows — date, category, read time */
+.md-post__meta .md-post__meta-item {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: flex-start !important;
+  gap: 0.3rem !important;
+  font-size: 0.68rem !important;
+  line-height: 1.5 !important;
+  margin-bottom: 0.3rem;
+}
+
+/* Text inside each metadata row */
+.md-post__meta .md-post__meta-item span,
+.md-post__meta .md-post__meta-item a,
+.md-post__meta .md-post__meta-item time {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: block !important;
+  max-width: 11rem !important;
+  font-size: 0.68rem !important;
+}
+
+/* Metadata icons */
+.md-post__meta svg {
+  width: 0.75rem !important;
+  height: 0.75rem !important;
+  flex-shrink: 0 !important;
+  margin-top: 0.15rem !important;
+}
+
 
 /* =============================================================================
    8. TYPOGRAPHY
@@ -412,15 +512,11 @@
 
 
 /* =============================================================================
-   15. RESPONSIVE
+   15. RESPONSIVE TYPOGRAPHY & COMPONENTS
+   Note: .md-grid responsive rules live in Section 2 — not here.
    ============================================================================= */
 
 @media screen and (max-width: 767px) {
-  .md-grid {
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
-
   .md-typeset h1 { font-size: 1.6rem; }
   .md-typeset h2 { font-size: 1.2rem; }
   .md-typeset h3 { font-size: 1.05rem; }
@@ -432,131 +528,4 @@
     font-size: 0.72rem !important;
     letter-spacing: 0.04em !important;
   }
-}
-
-@media screen and (max-width: 479px) {
-  .md-grid {
-    padding-left: 0.75rem;
-    padding-right: 0.75rem;
-  }
-}
-
-/* FIX 1 — "← Back to index" force single line */
-.md-post__nav-link,
-.md-post__nav-link *,
-.md-post__nav-link span {
-  white-space: nowrap !important;
-  font-size: 0.65rem !important;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  overflow: hidden;
-  display: block;
-  text-overflow: ellipsis;
-}
-
-/* FIX 2 — Author description — max 2 lines */
-.md-post__authors .md-author small,
-.md-post__authors .md-author span:last-of-type {
-  font-size: 0.68rem !important;
-  display: -webkit-box !important;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-height: 1.4;
-}
-
-/* FIX 3 — Date, Category, Read time — max 2 lines each */
-.md-post__meta li,
-.md-post__meta .md-post__meta-item {
-  font-size: 0.68rem !important;
-  display: -webkit-box !important;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  line-height: 1.5;
-  word-break: break-word;
-}
-
-/* =============================================================================
-   16. POST SIDEBAR OVERRIDES — must be last to win specificity
-   ============================================================================= */
-
-/* Shrink all text in sidebar */
-.md-sidebar--primary .md-sidebar__scrollwrap * {
-  font-size: 0.72rem !important;
-  line-height: 1.5 !important;
-}
-
-/* Back to index — force single row, no wrapping */
-.md-post__nav-link {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: center !important;
-  gap: 0.3rem !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  font-size: 0.65rem !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.05em !important;
-  text-transform: uppercase !important;
-}
-
-.md-post__nav-link span,
-.md-post__nav-link svg {
-  white-space: nowrap !important;
-  flex-shrink: 0;
-}
-
-/* Author name — single line with ellipsis */
-.md-post__authors .md-author a {
-  font-size: 0.75rem !important;
-  font-weight: 700 !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  display: block !important;
-  max-width: 12rem !important;
-}
-
-/* Author description — single line with ellipsis */
-.md-post__authors .md-author small {
-  font-size: 0.68rem !important;
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  display: block !important;
-  max-width: 12rem !important;
-  opacity: 0.6;
-}
-
-/* Metadata rows — date, category, read time */
-.md-post__meta .md-post__meta-item {
-  display: flex !important;
-  flex-direction: row !important;
-  align-items: flex-start !important;
-  gap: 0.3rem !important;
-  font-size: 0.68rem !important;
-  line-height: 1.5 !important;
-  margin-bottom: 0.3rem;
-}
-
-/* The text inside each metadata row — truncate at 1 line */
-.md-post__meta .md-post__meta-item span,
-.md-post__meta .md-post__meta-item a,
-.md-post__meta .md-post__meta-item time {
-  white-space: nowrap !important;
-  overflow: hidden !important;
-  text-overflow: ellipsis !important;
-  display: block !important;
-  max-width: 11rem !important;
-  font-size: 0.68rem !important;
-}
-
-/* Metadata icons */
-.md-post__meta svg {
-  width: 0.75rem !important;
-  height: 0.75rem !important;
-  flex-shrink: 0 !important;
-  margin-top: 0.15rem !important;
 }
