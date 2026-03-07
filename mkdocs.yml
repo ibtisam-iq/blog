@@ -280,7 +280,7 @@ watch:
 extra:
   analytics:
     provider: google
-    property: G-XXXXXXXXXX
+    property: G-Q12Y95Y8GG
     feedback:
       title: Was this post helpful?
       ratings:
