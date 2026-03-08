@@ -144,6 +144,7 @@ plugins:
   # Tag icons are defined under theme.icon.tag above.
   # Tags themselves are listed in extra.tags below.
   - tags:
+      tags_file: tags.md
 
   # BLOG (CORE PLUGIN)
   - blog:
@@ -201,6 +202,8 @@ plugins:
       fallback_to_build_date: false             # Don't fake a date if git history missing
       timezone: Asia/Karachi                    # PKT = UTC+5
       locale: en
+      exclude:
+        - tags.md
 
   # MINIFY
   # Compresses the output HTML/CSS/JS before deployment to reduce file sizes and speed up load times.
