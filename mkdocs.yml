@@ -87,12 +87,46 @@ theme:
     edit: material/pencil
     view: material/eye
     tag:
+
+      # Containers & Orchestration
       docker: fontawesome/brands/docker
       kubernetes: fontawesome/solid/dharmachakra
+      helm: fontawesome/solid/anchor
+      podman: fontawesome/solid/box
+
+      # CI/CD & Automation
+      jenkins: fontawesome/solid/gears
+      github-actions: fontawesome/brands/github
+      argocd: fontawesome/solid/arrows-rotate
+      ansible: fontawesome/solid/terminal
+
+      # Infrastructure & IaC
+      terraform: fontawesome/solid/layer-group
+      packer: fontawesome/solid/cube
+
+      # Cloud
+      aws: fontawesome/brands/aws
+      gcp: fontawesome/brands/google
+      azure: fontawesome/brands/microsoft
+      cloudflare: fontawesome/solid/shield-halved
+
+      # Observability
+      prometheus: fontawesome/solid/chart-line
+      grafana: fontawesome/solid/gauge-high
+
+      # Languages & Scripting
+      python: fontawesome/brands/python
+      bash: fontawesome/solid/terminal
+      go: fontawesome/brands/golang
+      yaml: fontawesome/solid/file-code
+
+      # OS & System
       linux: fontawesome/brands/linux
-      cicd: fontawesome/solid/arrows-rotate
-      networking: fontawesome/solid/network-wired
+
+      # Cross-cutting
+      troubleshooting: fontawesome/solid/bug
       security: fontawesome/solid/shield-halved
+      networking: fontawesome/solid/network-wired
 
 # PLUGINS
 plugins:
@@ -125,14 +159,20 @@ plugins:
       authors: true                         # Show author name + avatar on each post
       authors_file: .authors.yml            # Author data lives in docs/.authors.yml
       categories: true                      # Enable grouping posts by category
+
       categories_allowed:                   # ONLY these exact strings are valid categories
-        - Containers & Orchestration        # If a post uses something else, build errors out
-        - CI/CD & Software Delivery
-        - Cloud & Infrastructure
-        - Servers & Runtime Systems
-        - Observability & Security
-        - Operations & Self-Managed Systems
-        - Databases & Storage
+        - Containers & Orchestration        # Docker, Podman, Kubernetes, Helm, containerd, CRI-O
+        - CI/CD & Automation                # Jenkins, GitHub Actions, ArgoCD, GitOps, pipelines
+        - Infrastructure & IaC              # Terraform, Pulumi, Packer, Ansible, provisioning
+        - Cloud Platforms                   # AWS, GCP, Azure, OCI — services, architecture, billing
+        - Serverless & Edge                 # Lambda, Cloud Functions, Cloudflare Workers, Knative
+        - Platform Engineering              # Internal dev platforms, self-hosted infra, Backstage
+        - Observability & Reliability       # Prometheus, Grafana, tracing, SLOs, incident response
+        - Security & Compliance             # SAST, secrets, policies, network hardening, CVEs
+        - Networking & Storage              # DNS, load balancers, VPNs, volumes, object storage
+        - Linux & System Administration     # OS, shell, systemd, bare metal, on-prem servers
+        - AI/ML Operations                  # MLOps, AIOps, model serving, vector DBs, LLMOps
+        - Career & Growth                   # Transition stories, learning paths, interview prep
 
   # SOCIAL CARDS
   # AUTO-GENERATES a branded preview image for every post.
@@ -278,11 +318,53 @@ watch:
   - mkdocs.yml
 
 extra:
+
+  tags:
+    # Containers & Orchestration
+    Docker: docker
+    Kubernetes: kubernetes
+    Helm: helm
+    Podman: podman
+
+    # CI/CD & Automation
+    Jenkins: jenkins
+    GitHub Actions: github-actions
+    ArgoCD: argocd
+    Ansible: ansible
+
+    # Infrastructure & IaC
+    Terraform: terraform
+    Packer: packer
+
+    # Cloud Platforms
+    AWS: aws
+    GCP: gcp
+    Azure: azure
+    Cloudflare: cloudflare
+
+    # Observability & Reliability
+    Prometheus: prometheus
+    Grafana: grafana
+
+    # Languages & Scripting
+    Python: python
+    Bash: bash
+    Go: go
+    YAML: yaml
+
+    # OS & System
+    Linux: linux
+
+    # Cross-cutting
+    Troubleshooting: troubleshooting
+    Security: security
+    Networking: networking
+
   analytics:
     provider: google
     property: G-Q12Y95Y86G
     feedback:
-      title: Was this post helpful?
+      title: Was this blog helpful?
       ratings:
         - icon: material/thumb-up-outline
           name: Yes, it helped
@@ -302,21 +384,9 @@ extra:
       link: https://github.com/ibtisam-iq
       name: Follow on GitHub
 
-    - icon: fontawesome/brands/docker
-      link: https://hub.docker.com/u/mibtisam
-      name: Docker Hub
-
     - icon: fontawesome/solid/globe
       link: https://ibtisam-iq.com
       name: Personal Website
-
-  tags:
-    Docker: docker
-    Kubernetes: kubernetes
-    Linux: linux
-    CI/CD: cicd
-    Networking: networking
-    Security: security
 
   generator: false
 
@@ -325,5 +395,4 @@ extra_css:
 
 extra_javascript:
   - javascripts/extra.js
-  # Uncomment for math rendering:
-  # - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
