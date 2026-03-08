@@ -144,7 +144,6 @@ plugins:
   # Tag icons are defined under theme.icon.tag above.
   # Tags themselves are listed in extra.tags below.
   - tags:
-      tags_file: tags.md
 
   # BLOG (CORE PLUGIN)
   - blog:
