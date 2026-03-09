@@ -30,13 +30,13 @@ flowchart LR
     style PROJECTS fill:#9c27b0,color:#ffffff,stroke:#e1bee7,font-weight:bold
 ```
 
-> 📝 **Blog is the distillation layer.** When something in Nectar becomes clear and repeatable, the practical path gets written here — problem-first, outcome-focused.
+> 📝 **Blog is the distillation layer.** When something in **[Nectar](https://nectar.ibtisam-iq.com/)** becomes clear and repeatable, the practical path gets written here — problem-first, outcome-focused.
 
 ## What a Post Looks Like
 
 Every post follows one of two shapes:
 
-- **End-to-end run** — I understood the concept in Nectar, ran it fully, and documented the working path
-- **Limitation → fix** — I hit a wall, traced the gap back to first principles in Nectar, and wrote up the resolution
+- **End-to-end run** — I understood the concept in **[Nectar](https://nectar.ibtisam-iq.com/)**, ran it fully, and documented the working path
+- **Limitation → fix** — I hit a wall, traced the gap back to first principles in **[Nectar](https://nectar.ibtisam-iq.com/)**, and wrote up the resolution
 
 No post exists without a working setup behind it.

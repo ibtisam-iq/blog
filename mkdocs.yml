@@ -11,6 +11,11 @@ site_author: Muhammad Ibtisam
 docs_dir: docs
 site_dir: site
 
+# GITHUB INTEGRATION
+# repo_url: https://github.com/ibtisam-iq/blog
+# repo_name: ibtisam-iq/blog
+# edit_uri: edit/main/docs/
+
 # COPYRIGHT FOOTER
 copyright: >-
   Copyright &copy; 2026
@@ -54,8 +59,8 @@ theme:
     - content.code.annotate       # Allows (1) style inline annotations inside code blocks
     - content.tabs.link           # Syncs tab selection across the whole page
     - content.tooltips            # Enables hover tooltips on abbreviated terms
-    - content.action.edit         # Adds "Edit this page" button (links to GitHub)
-    - content.action.view         # Adds "View source" button (links to GitHub raw file)
+    # - content.action.edit       # Adds "Edit this page" button (links to GitHub)
+    # - content.action.view       # Adds "View source" button (links to GitHub raw file)
 
   # COLOR PALETTE
   # Two palettes = automatic light/dark mode switching.
@@ -203,6 +208,7 @@ plugins:
       locale: en
       exclude:
         - tags.md
+        - about.md
 
   # MINIFY
   # Compresses the output HTML/CSS/JS before deployment to reduce file sizes and speed up load times.
@@ -398,3 +404,8 @@ extra_css:
 extra_javascript:
   - javascripts/extra.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+nav:
+  - About: about.md
+  - Blog: index.md        # provided by blog plugin
+  - Tags: tags.md          # provided by tags plugin
