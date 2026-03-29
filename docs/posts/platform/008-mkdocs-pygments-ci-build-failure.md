@@ -29,7 +29,7 @@ This is the full root cause analysis and fix.
 
 ## The Error
 
-```
+```text
 ERROR - Error reading page 'cloud-infrastructure/aws/nat-gateway.md':
         'NoneType' object has no attribute 'replace'
 
@@ -89,7 +89,7 @@ pip show pygments | grep Version
 The `requirements.txt` had this:
 
 ```text
-pymdownx-extensions==10.16.1   # pinned ✅
+pymdownx-extensions==10.16.1    # pinned ✅
 mkdocs-material==9.7.1          # pinned ✅
 pygments                        # NOT pinned ❌
 ```
@@ -152,10 +152,6 @@ Or at minimum, pin any package that sits at a dependency boundary — packages t
 
 ## Key Takeaway
 
-> When CI fails but local builds pass, the first question is never *"what's wrong with my content?"* — it's *"what package version does CI install that my local env doesn't have?"*
+> When CI fails but local builds pass, the first question is never *"what's wrong with my code?"* — it's *"what package version does CI install that my local env doesn't have?"*
 
 The traceback led to `pygments/formatters/html.py`. Pygments was unpinned. That's all it was. Two hours of debugging, one line of fix.
-
-## Repository
-
-**[github.com/ibtisam-iq/nectar](https://github.com/ibtisam-iq/nectar)** — the docs project where this happened.
