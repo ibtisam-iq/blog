@@ -86,11 +86,11 @@ Every image runs a [`healthcheck.sh`](https://github.com/ibtisam-iq/silver-stack
 
 ## The Playground Manifest
 
-The full four-node stack is defined in [`ci-cd-stack.yml`](https://github.com/ibtisam-iq/silver-stack/blob/main/iximiuz/manifests/cicd-stack.yml) and started with:
+The full four-node stack is defined in [`cicd-stack.yml`](https://github.com/ibtisam-iq/silver-stack/blob/main/iximiuz/manifests/cicd-stack.yml) and started with:
 
 ```bash
-labctl playground create --base flexbox ci-cd-stack \
-  -f iximiuz/manifests/ci-cd-stack.yml
+labctl playground create --base flexbox cicd-stack \
+  -f iximiuz/manifests/cicd-stack.yml
 ```
 
 Within 90 seconds all four VMs are up, all services running, SSH working between nodes.
