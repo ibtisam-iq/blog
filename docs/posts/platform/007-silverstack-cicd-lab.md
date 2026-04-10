@@ -86,7 +86,7 @@ Every image runs a [`healthcheck.sh`](https://github.com/ibtisam-iq/silver-stack
 
 ## The Playground Manifest
 
-The full four-node stack is defined in [`ci-cd-stack.yml`](https://github.com/ibtisam-iq/silver-stack/blob/main/iximiuz/manifests/ci-cd-stack.yml) and started with:
+The full four-node stack is defined in [`ci-cd-stack.yml`](https://github.com/ibtisam-iq/silver-stack/blob/main/iximiuz/manifests/cicd-stack.yml) and started with:
 
 ```bash
 labctl playground create --base flexbox ci-cd-stack \
