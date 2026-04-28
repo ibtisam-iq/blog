@@ -1,6 +1,6 @@
 # Engineering Blog
 
-![Blog](https://img.shields.io/badge/Engineering-Blog-orange)
+[![Site](https://img.shields.io/badge/Live-blog.ibtisam--iq.com-01696f)](https://blog.ibtisam-iq.com)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
 A record of real systems I have run and figured out on my own.
