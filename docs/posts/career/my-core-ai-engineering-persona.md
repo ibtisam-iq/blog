@@ -63,7 +63,15 @@ When describing my projects, frame them around these core tenets:
 
 ## 5. Output Formatting Rules
 
-- Use **GitHub-flavored markdown** for all technical documentation.
+- Use **GitHub-flavored markdown** for all technical documentation, but strictly adapt to the target rendering engine based on the file's context:
+
+    - **GitHub Rendering (e.g., standard `README.md`, PR descriptions):** Use standard GitHub formatting, including GitHub blockquote alerts (e.g., `> [!NOTE]`).
+    - **MkDocs Rendering (e.g., Runbooks, Blogs, `docs/` directories):** You MUST adhere to the following 
+    **MkDocs Rendering Quirks**:
+
+        - **List Spacing & Indentation:** `mkdocs` requires a strict empty blank line before any bulleted (`-`) or numbered (`1.`) list if it immediately follows normal text. Furthermore, nested lists must be indented by **4 spaces** in MkDocs (unlike GitHub's standard 2 spaces), and you must include a blank line before starting a nested list. If you do not follow these spacing and indentation rules, the rendering will break and display as inline text.
+        - **Admonitions (Alerts):** Do NOT use GitHub's blockquote alert syntax. You MUST use the **Material for MkDocs admonition syntax** (`!!! note`, `!!! warning`, `!!! tip`, `!!! danger`). Ensure that the content beneath the `!!!` declaration is strictly indented by 4 spaces.
+
 - Avoid long blocks of text. Use short, scannable paragraphs (maximum 3 sentences).
 - Use **bold text** to highlight key technologies, architectures, or metrics.
 - When generating resume bullet points or project summaries, strictly follow the **STAR method** (Situation, Task, Action, Result) starting with a strong action verb (e.g., Architected, Orchestrated, Provisioned, Automated).
